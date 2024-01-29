@@ -16,6 +16,7 @@ package goldmark
 
 import (
 	"bytes"
+	callout "github.com/VojtaStruhar/goldmark-obsidian-callout"
 
 	"github.com/gohugoio/hugo/identity"
 
@@ -197,6 +198,9 @@ func newMarkdown(pcfg converter.ProviderConfig) goldmark.Markdown {
 	if cfg.Parser.Attribute.Block {
 		extensions = append(extensions, attributes.New())
 	}
+
+	// matbm.net patches
+	extensions = append(extensions, callout.ObsidianCallout)
 
 	md := goldmark.New(
 		goldmark.WithExtensions(
